@@ -7,28 +7,28 @@ export class OrganizerPage {
 
   render(): string {
     return `
-      <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <div class="min-h-screen flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
         <!-- Decorative snowflakes -->
         <div class="absolute inset-0 pointer-events-none" id="snowflakes"></div>
 
-        <div class="card-christmas max-w-2xl w-full relative z-10">
-          <div class="text-center mb-8">
-            <h1 class="text-5xl font-bold text-christmas-red mb-2">🎅 Secret Santa</h1>
-            <p class="text-2xl text-christmas-green">Gift Exchange Organizer</p>
+        <div class="card-christmas max-w-2xl w-full relative z-10 p-4 sm:p-6 md:p-8">
+          <div class="text-center mb-4 sm:mb-8">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-christmas-red mb-2">🎅 Secret Santa</h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-christmas-green">Gift Exchange Organizer</p>
           </div>
 
-          <form id="organizer-form" class="space-y-6">
+          <form id="organizer-form" class="space-y-4 sm:space-y-6">
             <!-- Participants Section -->
-            <div class="bg-christmas-cream rounded-2xl p-6">
-              <label class="block text-xl font-bold text-christmas-darkgreen mb-4">
+            <div class="bg-christmas-cream rounded-xl sm:rounded-2xl p-4 sm:p-6">
+              <label class="block text-lg sm:text-xl font-bold text-christmas-darkgreen mb-3 sm:mb-4">
                 🎁 Participants
               </label>
 
-              <div id="participants-list" class="space-y-3 mb-4">
+              <div id="participants-list" class="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
                 ${this.renderParticipants()}
               </div>
 
-              <div class="flex gap-2">
+              <div class="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
                   id="new-participant"
@@ -38,21 +38,21 @@ export class OrganizerPage {
                 <button
                   type="button"
                   id="add-participant"
-                  class="btn-secondary whitespace-nowrap"
+                  class="btn-secondary whitespace-nowrap w-full sm:w-auto"
                 >
                   ➕ Add
                 </button>
               </div>
-              <p class="text-sm text-gray-600 mt-2">Minimum 2 participants required</p>
+              <p class="text-xs sm:text-sm text-gray-600 mt-2">Minimum 2 participants required</p>
             </div>
 
             <!-- Prize Value -->
             <div>
-              <label class="block text-xl font-bold text-christmas-darkgreen mb-2">
+              <label class="block text-lg sm:text-xl font-bold text-christmas-darkgreen mb-2">
                 💰 Gift Budget
               </label>
               <div class="relative">
-                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">$</span>
+                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-lg sm:text-xl">$</span>
                 <input
                   type="number"
                   id="prize-value"
@@ -67,7 +67,7 @@ export class OrganizerPage {
 
             <!-- Event Date -->
             <div>
-              <label class="block text-xl font-bold text-christmas-darkgreen mb-2">
+              <label class="block text-lg sm:text-xl font-bold text-christmas-darkgreen mb-2">
                 📅 Secret Santa Date
               </label>
               <input
@@ -81,26 +81,26 @@ export class OrganizerPage {
             <!-- Submit Button -->
             <button
               type="submit"
-              class="btn-primary w-full text-xl py-4"
+              class="btn-primary w-full text-base sm:text-lg md:text-xl py-3 sm:py-4"
             >
               🎄 Generate Secret Santa Matches! 🎄
             </button>
           </form>
 
           <!-- Result Section (hidden initially) -->
-          <div id="result-section" class="hidden mt-8 p-6 bg-christmas-green text-white rounded-2xl">
-            <h2 class="text-2xl font-bold mb-4 text-center">✨ Matches Generated! ✨</h2>
-            <p class="mb-4 text-center">Share this link with all participants:</p>
+          <div id="result-section" class="hidden mt-6 sm:mt-8 p-4 sm:p-6 bg-christmas-green text-white rounded-xl sm:rounded-2xl">
+            <h2 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-center">✨ Matches Generated! ✨</h2>
+            <p class="mb-3 sm:mb-4 text-center text-sm sm:text-base">Share this link with all participants:</p>
 
-            <div class="bg-white text-christmas-darkgreen p-4 rounded-xl break-all mb-4">
-              <code id="shareable-link" class="text-sm"></code>
+            <div class="bg-white text-christmas-darkgreen p-3 sm:p-4 rounded-lg sm:rounded-xl break-all mb-3 sm:mb-4">
+              <code id="shareable-link" class="text-xs sm:text-sm"></code>
             </div>
 
-            <div class="flex gap-2">
-              <button id="copy-link" class="btn-christmas bg-christmas-red text-white flex-1">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <button id="copy-link" class="btn-christmas bg-christmas-red text-white flex-1 text-sm sm:text-base">
                 📋 Copy Link
               </button>
-              <button id="reset-form" class="btn-christmas bg-christmas-brown text-white flex-1">
+              <button id="reset-form" class="btn-christmas bg-christmas-brown text-white flex-1 text-sm sm:text-base">
                 🔄 Start Over
               </button>
             </div>
@@ -112,18 +112,18 @@ export class OrganizerPage {
 
   private renderParticipants(): string {
     if (this.participants.length === 0) {
-      return '<p class="text-gray-500 text-center py-4">No participants added yet</p>';
+      return '<p class="text-gray-500 text-center py-3 sm:py-4 text-sm sm:text-base">No participants added yet</p>';
     }
 
     return this.participants
       .map(
         (p, index) => `
-        <div class="flex items-center gap-2 bg-white p-3 rounded-xl">
-          <span class="text-2xl">🎅</span>
-          <span class="flex-1 font-semibold text-christmas-darkgreen">${this.escapeHtml(p.name)}</span>
+        <div class="flex items-center gap-2 bg-white p-2 sm:p-3 rounded-lg sm:rounded-xl">
+          <span class="text-xl sm:text-2xl">🎅</span>
+          <span class="flex-1 font-semibold text-christmas-darkgreen text-sm sm:text-base">${this.escapeHtml(p.name)}</span>
           <button
             type="button"
-            class="remove-participant text-christmas-red hover:bg-red-100 rounded-full w-8 h-8 flex items-center justify-center"
+            class="remove-participant text-christmas-red hover:bg-red-100 rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-sm sm:text-base"
             data-index="${index}"
           >
             ❌

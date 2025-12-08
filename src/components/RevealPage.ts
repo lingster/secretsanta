@@ -29,25 +29,25 @@ export class RevealPage {
     });
 
     return `
-      <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <div class="min-h-screen flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
         <!-- Decorative snowflakes -->
         <div class="absolute inset-0 pointer-events-none" id="snowflakes"></div>
 
-        <div class="card-christmas max-w-2xl w-full relative z-10">
-          <div class="text-center mb-8">
-            <h1 class="text-5xl font-bold text-christmas-red mb-2">🎅 Secret Santa</h1>
-            <p class="text-2xl text-christmas-green mb-4">Gift Exchange</p>
+        <div class="card-christmas max-w-2xl w-full relative z-10 p-4 sm:p-6 md:p-8">
+          <div class="text-center mb-4 sm:mb-8">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-christmas-red mb-2">🎅 Secret Santa</h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-christmas-green mb-3 sm:mb-4">Gift Exchange</p>
 
-            <div class="bg-christmas-cream rounded-xl p-4 inline-block">
-              <p class="text-lg"><strong>📅 Event Date:</strong> ${eventDate}</p>
-              <p class="text-lg"><strong>💰 Budget:</strong> $${this.config.prizeValue}</p>
+            <div class="bg-christmas-cream rounded-lg sm:rounded-xl p-3 sm:p-4 inline-block">
+              <p class="text-sm sm:text-base md:text-lg"><strong>📅 Event Date:</strong> ${eventDate}</p>
+              <p class="text-sm sm:text-base md:text-lg"><strong>💰 Budget:</strong> $${this.config.prizeValue}</p>
             </div>
           </div>
 
           <!-- Instructions -->
-          <div class="bg-christmas-green text-white rounded-2xl p-6 mb-6">
-            <h2 class="text-2xl font-bold mb-3 text-center">📜 Instructions</h2>
-            <ol class="space-y-2 text-lg">
+          <div class="bg-christmas-green text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-center">📜 Instructions</h2>
+            <ol class="space-y-1 sm:space-y-2 text-sm sm:text-base md:text-lg">
               <li>1️⃣ Select your name from the list below</li>
               <li>2️⃣ Confirm it's really you (no peeking!)</li>
               <li>3️⃣ Discover who you're buying a gift for</li>
@@ -57,17 +57,17 @@ export class RevealPage {
 
           <!-- Selection Form -->
           <div id="selection-form">
-            <label class="block text-xl font-bold text-christmas-darkgreen mb-4">
+            <label class="block text-lg sm:text-xl font-bold text-christmas-darkgreen mb-3 sm:mb-4">
               👤 Who are you?
             </label>
 
-            <div class="space-y-3 mb-6">
+            <div class="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               ${participantNames
                 .map(
                   (name) => `
                 <button
                   type="button"
-                  class="participant-select w-full p-4 bg-white border-3 border-christmas-green rounded-xl hover:bg-christmas-cream hover:scale-105 transition-all duration-200 text-xl font-semibold text-christmas-darkgreen"
+                  class="participant-select w-full p-3 sm:p-4 bg-white border-3 border-christmas-green rounded-lg sm:rounded-xl hover:bg-christmas-cream hover:scale-105 transition-all duration-200 text-base sm:text-lg md:text-xl font-semibold text-christmas-darkgreen"
                   data-name="${this.escapeHtml(name)}"
                 >
                   🎁 ${this.escapeHtml(name)}
@@ -80,17 +80,17 @@ export class RevealPage {
 
           <!-- Confirmation Modal (hidden initially) -->
           <div id="confirmation-modal" class="hidden">
-            <div class="bg-christmas-red text-white rounded-2xl p-6 text-center">
-              <h2 class="text-3xl font-bold mb-4">⚠️ Wait!</h2>
-              <p class="text-xl mb-2">Are you really:</p>
-              <p class="text-3xl font-bold mb-6" id="confirm-name"></p>
-              <p class="mb-6">Make sure nobody else is looking! 👀</p>
+            <div class="bg-christmas-red text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+              <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">⚠️ Wait!</h2>
+              <p class="text-base sm:text-xl mb-2">Are you really:</p>
+              <p class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6" id="confirm-name"></p>
+              <p class="mb-4 sm:mb-6 text-sm sm:text-base">Make sure nobody else is looking! 👀</p>
 
-              <div class="flex gap-3">
-                <button id="confirm-yes" class="btn-christmas bg-christmas-green text-white flex-1 text-xl py-3">
+              <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <button id="confirm-yes" class="btn-christmas bg-christmas-green text-white flex-1 text-base sm:text-xl py-2 sm:py-3">
                   ✅ Yes, that's me!
                 </button>
-                <button id="confirm-no" class="btn-christmas bg-white text-christmas-red flex-1 text-xl py-3">
+                <button id="confirm-no" class="btn-christmas bg-white text-christmas-red flex-1 text-base sm:text-xl py-2 sm:py-3">
                   ❌ No, go back
                 </button>
               </div>
@@ -110,34 +110,34 @@ export class RevealPage {
     });
 
     return `
-      <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <div class="min-h-screen flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
         <!-- Decorative snowflakes -->
         <div class="absolute inset-0 pointer-events-none" id="snowflakes"></div>
 
-        <div class="card-christmas max-w-2xl w-full relative z-10 text-center">
-          <div class="mb-8">
-            <h1 class="text-5xl font-bold text-christmas-red mb-2">🎅 Secret Santa</h1>
-            <p class="text-2xl text-christmas-green mb-4">Your Assignment</p>
+        <div class="card-christmas max-w-2xl w-full relative z-10 text-center p-4 sm:p-6 md:p-8">
+          <div class="mb-4 sm:mb-8">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-christmas-red mb-2">🎅 Secret Santa</h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-christmas-green mb-3 sm:mb-4">Your Assignment</p>
           </div>
 
-          <div class="bg-christmas-cream rounded-2xl p-8 mb-6">
-            <p class="text-2xl mb-4">Hello, <strong>${this.escapeHtml(this.revealed!.participant)}</strong>! 👋</p>
-            <p class="text-xl mb-6">You're buying a gift for:</p>
+          <div class="bg-christmas-cream rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6">
+            <p class="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4">Hello, <strong>${this.escapeHtml(this.revealed!.participant)}</strong>! 👋</p>
+            <p class="text-base sm:text-lg md:text-xl mb-4 sm:mb-6">You're buying a gift for:</p>
 
-            <div class="bg-christmas-green text-white rounded-xl p-8 transform scale-110">
-              <p class="text-4xl font-bold mb-2">🎁</p>
-              <p class="text-5xl font-bold">${this.escapeHtml(this.revealed!.receiver)}</p>
-              <p class="text-4xl font-bold mt-2">🎁</p>
+            <div class="bg-christmas-green text-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 transform sm:scale-110">
+              <p class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">🎁</p>
+              <p class="text-3xl sm:text-4xl md:text-5xl font-bold">${this.escapeHtml(this.revealed!.receiver)}</p>
+              <p class="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">🎁</p>
             </div>
           </div>
 
-          <div class="bg-christmas-red text-white rounded-2xl p-6 mb-6">
-            <p class="text-xl mb-2">📅 Event Date: <strong>${eventDate}</strong></p>
-            <p class="text-xl">💰 Budget: <strong>$${this.config.prizeValue}</strong></p>
+          <div class="bg-christmas-red text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
+            <p class="text-sm sm:text-base md:text-xl mb-1 sm:mb-2">📅 Event Date: <strong>${eventDate}</strong></p>
+            <p class="text-sm sm:text-base md:text-xl">💰 Budget: <strong>$${this.config.prizeValue}</strong></p>
           </div>
 
-          <div class="bg-yellow-100 border-3 border-christmas-gold rounded-xl p-4">
-            <p class="text-lg text-christmas-darkgreen">
+          <div class="bg-yellow-100 border-3 border-christmas-gold rounded-lg sm:rounded-xl p-3 sm:p-4">
+            <p class="text-sm sm:text-base md:text-lg text-christmas-darkgreen">
               <strong>🤫 Remember:</strong> Keep it secret! Don't tell anyone who you got!
             </p>
           </div>
