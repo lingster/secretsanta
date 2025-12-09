@@ -1,5 +1,4 @@
 import type { SecretSantaConfig, RevealedGift } from '../types';
-import { getRevealedCookie, setRevealedCookie } from '../utils/cookies';
 
 export class RevealPage {
   private config: SecretSantaConfig;
@@ -7,7 +6,6 @@ export class RevealPage {
 
   constructor(config: SecretSantaConfig) {
     this.config = config;
-    this.revealed = getRevealedCookie();
   }
 
   render(): string {
@@ -136,11 +134,15 @@ export class RevealPage {
             <p class="text-sm sm:text-base md:text-xl">💰 Budget: <strong>$${this.config.prizeValue}</strong></p>
           </div>
 
-          <div class="bg-yellow-100 border-3 border-christmas-gold rounded-lg sm:rounded-xl p-3 sm:p-4">
+          <div class="bg-yellow-100 border-3 border-christmas-gold rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
             <p class="text-sm sm:text-base md:text-lg text-christmas-darkgreen">
               <strong>🤫 Remember:</strong> Keep it secret! Don't tell anyone who you got!
             </p>
           </div>
+
+          <button id="back-button" class="btn-christmas bg-christmas-green text-white w-full text-base sm:text-xl py-2 sm:py-3">
+            ⬅️ Back to Selection
+          </button>
         </div>
       </div>
     `;
@@ -150,7 +152,16 @@ export class RevealPage {
     this.generateSnowflakes();
 
     if (this.revealed) {
-      // Already revealed, no interactions needed
+      // Add back button handler
+      const backBtn = document.getElementById('back-button');
+      backBtn?.addEventListener('click', () => {
+        this.revealed = null;
+        const app = document.querySelector<HTMLDivElement>('#app');
+        if (app) {
+          app.innerHTML = this.render();
+          this.attachEventListeners();
+        }
+      });
       return;
     }
 
@@ -205,11 +216,13 @@ export class RevealPage {
       expiresAt: new Date(this.config.eventDate + 'T23:59:59').toISOString(),
     };
 
-    // Save to cookie
-    setRevealedCookie(revealed);
-
-    // Reload page to show revealed state
-    window.location.reload();
+    // Update state and re-render
+    this.revealed = revealed;
+    const app = document.querySelector<HTMLDivElement>('#app');
+    if (app) {
+      app.innerHTML = this.render();
+      this.attachEventListeners();
+    }
   }
 
   private generateSnowflakes(): void {
